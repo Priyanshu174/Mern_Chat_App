@@ -1,7 +1,7 @@
-import { genSalt, hash } from "bcrypt";
+import bcrypt from "bcryptjs";  // Import bcryptjs instead of bcrypt
 import mongoose from "mongoose";
 
-const userSchema  = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Email is Required"],
@@ -10,7 +10,6 @@ const userSchema  = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is Required"],
-
     },
     firstName: {
         type: String,
@@ -35,15 +34,16 @@ const userSchema  = new mongoose.Schema({
 },
 {
     timestamps: true,
-}
-);
+});
 
 userSchema.pre("save", async function(next) {
-    const salt = await genSalt();
-    this.password = await hash(this.password, salt);
+    if (this.isModified("password")) {  
+        const salt = await bcrypt.genSalt(); 
+        this.password = await bcrypt.hash(this.password, salt); 
+    }
     next();
 });
 
-const User = mongoose.model("chatUser",userSchema);
+const User = mongoose.model("chatUser", userSchema);
 
 export default User;
