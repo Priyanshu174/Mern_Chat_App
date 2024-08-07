@@ -17,7 +17,7 @@ const mongoUri = 'mongodb+srv://user:user174@cluster0.izggpmk.mongodb.net/?retry
 
 // CORS configuration
 app.use(cors({
-  origin: "https://mern-chat-app-frontend-weld.vercel.app", // Allow requests from all origins
+  origin: "https://mern-chat-app-frontend-leut7u4z0-priyanshus-projects-f4f4f618.vercel.app", // Allow requests from all origins
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   credentials: true, 
 }));
