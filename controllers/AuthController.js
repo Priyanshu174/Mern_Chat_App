@@ -42,7 +42,7 @@ export const login = async (req,res,next) => {
         if (!user) {
             return res.status(404).send('User with the given email not found');
         }
-        const auth = await compare(password, user.password);
+        const auth = await bcrypt.compare(password, user.password);
         if(!auth) {
             return res.status(404).send('Password is incorrect');
         }
