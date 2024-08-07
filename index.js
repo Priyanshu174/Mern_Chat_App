@@ -13,7 +13,7 @@ dotenv.config()
 
 const app = express();
 const port = process.env.PORT || 4000;
-const mongoUri = process.env.MONGO_URL;
+const mongoUri = 'mongodb+srv://user:user174@cluster0.izggpmk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // CORS configuration
 app.use(cors({
